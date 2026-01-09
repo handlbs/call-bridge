@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Call Bridge | Never Miss a Paying Call</title>
+  <meta name="description" content="Call Bridge installs and manages a 24/7 call handling system for service businesses so you never miss another paying job." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+
+      /* blue-only section palette */
+      --section-1: #ffffff;
+      --section-2: #eff6ff; /* blue */
+      --section-3: #ffffff;
+      --section-4: #e0f2fe; /* sky */
+      --section-5: #ffffff; /* slate-100 */
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--section-1);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #000000;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      color: #ffffff;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .logo img {
+      height: 72px; /* 2x current size */
+      width: auto;
+    }
+
+    .cta {
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 500;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 8px 20px rgba(37,99,235,0.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(37,99,235,0.45);
+    }
+
+    section {
+      padding: 110px 0;
+    }
+
+    .hero {
+      background: var(--section-1);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: clamp(44px, 5vw, 64px);
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .center { margin-top: 32px; }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 64px;
+    }
+
+    .feature h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .pricing { text-align: center; }
+
+    .price {
+      font-size: 44px;
+      font-weight: 600;
+      margin: 12px 0;
+    }
+
+    footer {
+      padding: 64px 0;
+      font-size: 14px;
+      color: var(--muted);
+      background: var(--section-5);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .split, .features { grid-template-columns: 1fr; }
+      .hero-grid { gap: 32px; }
+      .split { gap: 32px; }
+      .features { gap: 18px; }
+    }
+
+    /* Mobile-first tuning */
+    @media (max-width: 600px) {
+      /* Mobile header: hide logo and center header links */
+      .logo {
+        display: none;
+      }
+
+      .nav {
+        justify-content: center;
+      }
+
+      .nav > div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      /* Mobile header: hide logo and center nav links */
+      .logo {
+        display: none;
+      }
+
+      .nav {
+        justify-content: center;
+      }
+
+      .nav > div {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      /* Mobile hero order: TEXT → IMAGE → CTA */
+      .hero-grid {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Text block first */
+      .hero-grid > div {
+        order: 0;
+      }
+
+      /* Image second */
+      .hero-grid img {
+        order: 1;
+      }
+
+      /* CTA last */
+      .hero-grid .center {
+        order: 2;
+        margin-top: 24px;
+      }
+
+      /* Reorder hero content on mobile: image first, CTA below image */
+      .hero-grid {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-grid > div {
+        order: 1;
+      }
+
+      .hero-grid img {
+        order: 0;
+      }
+
+      /* Center text content on mobile */
+      h1, h2, p {
+        text-align: center;
+      }
+
+      /* Center all primary CTA buttons on mobile */
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Center images on mobile */
+      .hero-grid img,
+      .split img {
+        display: block;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        height: 320px !important;
+        border-radius: 18px !important;
+      }
+
+      header { position: sticky; }
+
+      .container { padding: 0 18px; }
+
+      .nav {
+        padding: 14px 0;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      /* Logo: big on desktop, sane on phones */
+      .logo img {
+        height: 52px;
+      }
+
+      /* Links + CTA: keep aligned and readable */
+      .nav > div {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .cta {
+        padding: 12px 18px;
+        min-width: 160px;
+      }
+
+      section { padding: 72px 0; }
+
+      h1 {
+        font-size: 38px;
+        line-height: 1.08;
+      }
+
+      h2 {
+        font-size: 28px;
+        line-height: 1.15;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      /* Feature tiles */
+      .features {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+        margin-top: 36px;
+      }
+
+      .features .feature {
+        padding: 20px !important;
+        border-radius: 18px !important;
+        width: 100%;
+      }
+
+      .price {
+        font-size: 34px;
+      }
+
+      footer {
+        padding: 44px 0;
+      }
+    }
+
+      /* Feature tiles: avoid weird inline overrides by setting a dedicated class rule */
+      .features {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+        margin-top: 36px;
+      }
+
+      .features .feature {
+        padding: 20px !important;
+        border-radius: 18px !important;
+        width: 100%;
+      }
+
+      .price {
+        font-size: 34px;
+      }
+
+      footer {
+        padding: 44px 0;
+      }
+    }
+
+      .feature {
+        padding: 20px !important;
+        border-radius: 18px !important;
+      }
+
+      .price {
+        font-size: 34px;
+      }
+
+      footer {
+        padding: 44px 0;
+      }
+    }
+    }
+  
+
+    /* ===== FINAL MOBILE HEADER OVERRIDES (wins over earlier duplicate rules) ===== */
+    @media (max-width: 600px) {
+      header .nav .logo { display: none !important; }
+
+      header .nav { 
+        justify-content: center !important;
+        padding: 12px 0 !important;
+      }
+
+      /* This is the links container in the header (2nd child of .nav) */
+      header .nav > div {
+        width: auto !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        flex-wrap: nowrap !important; /* keep ONE line */
+      }
+
+      header .nav > div a {
+        white-space: nowrap !important;
+        font-size: 13px !important;
+        line-height: 1 !important;
+      }
+
+      header .nav > div a.cta {
+        padding: 8px 12px !important;
+        font-size: 13px !important;
+        min-width: auto !important;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#top" class="logo">
+      <img src="logo.png" alt="Call Bridge logo" />
+    </a>
+    <div style="display:flex;align-items:center;gap:18px;">
+      <a href="https://linktr.ee/handlbs" target="_blank" rel="noopener" style="color:#ffffff;opacity:0.9;font-weight:500;">Essential Links</a>
+      <a href="https://forms.gle/c6VuPJpE9s71TBmU8" target="_blank" rel="noopener" style="color:#ffffff;opacity:0.9;font-weight:500;">Contact Us</a>
+      <a href="https://calendly.com/handlbs" class="cta">Book a Demo</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero" style="background: var(--section-1)">
+  <div class="container hero-grid">
+    <div>
+      <h1>Never miss a paying service call again.</h1>
+      <p>Call Bridge installs and manages a 24/7 call handling system for service businesses. When you can’t answer the phone, we step in, capture the job, and protect your revenue.</p>
+      <div class="center">
+        <a href="https://calendly.com/handlbs" class="cta">Book a Demo</a>
+      </div>
+    </div>
+    <img src="https://images.pexels.com/photos/4484074/pexels-photo-4484074.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professional answering phone" style="border-radius:24px;height:520px;object-fit:cover;" />
+  </div>
+</section>
+
+<section style="background: var(--section-2)">
+  <div class="container split">
+    <img src="https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Field technician on phone" style="border-radius:24px;height:520px;object-fit:cover;" />
+    <div>
+      <h2>The problem with missed calls</h2>
+      <p>Customers don’t leave voicemails. If your phone goes unanswered, they move on to the next company. That costs real money.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background: var(--section-3)">
+  <div class="container split">
+    <div>
+      <h2>How Call Bridge works</h2>
+      <p>If you answer the call, nothing changes. If you miss it, the call routes to Call Bridge instead of voicemail.</p>
+      <p>We capture job details, prioritize urgency, and notify you instantly with next steps.</p>
+    </div>
+    <img src="https://images.pexels.com/photos/7709166/pexels-photo-7709166.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Call routing desk" style="border-radius:24px;height:520px;object-fit:cover;" />
+  </div>
+</section>
+
+<section style="background: var(--section-4)">
+  <div class="container">
+    <h2>Built for owner-operators</h2>
+    <p>Designed specifically for plumbers, HVAC, electricians, roofers, and hands-on service professionals.</p>
+
+    <div class="features" style="grid-template-columns:repeat(3,1fr)">
+      <div class="feature" style="background:#ffffff;border-radius:20px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.06)">
+        <h3>Missed‑call capture</h3>
+        <p>Every call is answered so no opportunity disappears into voicemail.</p>
+      </div>
+      <div class="feature" style="background:#ffffff;border-radius:20px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.06)">
+        <h3>Job qualification</h3>
+        <p>We gather the right details up front so you don’t waste time calling back blindly.</p>
+      </div>
+      <div class="feature" style="background:#ffffff;border-radius:20px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.06)">
+        <h3>Emergency routing</h3>
+        <p>Urgent calls are identified and escalated immediately.</p>
+      </div>
+      <div class="feature" style="background:#ffffff;border-radius:20px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.06)">
+        <h3>Flexible scheduling</h3>
+        <p>Book jobs automatically or receive requests for approval.</p>
+      </div>
+      <div class="feature" style="background:#ffffff;border-radius:20px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.06)">
+        <h3>Hybrid system</h3>
+        <p>Automation handles the basics with live backup for edge cases.</p>
+      </div>
+      <div class="feature" style="background:#ffffff;border-radius:20px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.06)">
+        <h3>Fully managed</h3>
+        <p>No dashboards to babysit. We install it, monitor it, and keep it running.</p>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="pricing" style="background: var(--section-5)">
+  <div class="container">
+    <h2>Simple pricing. Real ROI.</h2>
+    <p>Most clients recover the monthly cost with a single booked job.</p>
+
+    <div class="price">$1,000–$2,000</div>
+    <p>One-time setup</p>
+
+    <div class="price">$300–$500 / month</div>
+    <p>Managed call handling and monitoring</p>
+
+    <div class="center">
+      <a href="https://calendly.com/handlbs" class="cta">Book a Demo</a>
+    </div>
+  </div>
+</section>
+
+<section id="demo" style="background: var(--section-2)">
+  <div class="container">
+    <h2>See Call Bridge in action</h2>
+    <p>Book a short demo and we’ll walk through exactly how calls are handled when you’re unavailable.</p>
+
+    <div class="center">
+      <a href="https://calendly.com/YOUR-LINK-HERE" class="cta">Book a Demo</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container" style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+    <img src="logo.png" alt="Call Bridge logo" style="height:64px;width:auto;" />
+    <div>© 2026 Call Bridge. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
